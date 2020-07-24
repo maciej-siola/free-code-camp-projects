@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Survey Page</title>
+
+    
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <h1 id="title">FreeCodeCamp Survey Form Project</h1>
+            <p id="description">This is a survey page project made for FreeCodeCamp</p> 
+        </header>
+        <form id="survey-form">
+            <div class="survey-element">
+                <label for="name" id="name-label">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+            </div>
+            <div class="survey-element">
+                <label for="email" id="email-label">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your Email adress">
+            </div>
+            <div class="survey-element">
+                <label for="number" id="number-label">Age (optional)</label>
+                <input type="number" id="number" name="number" placeholder="Enter your age" min="1" max="140">
+            </div>
+            <div class="survey-element">
+                <label for="dropdown">Have you completed this project on your own?</label>
+                <select id="dropdown" name="dropdown">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="survey-element">
+                <fieldset>
+                    <legend>What is your opinion about this page?</legend>
+                    <input type="radio" id="radio-bad" name="radio-group" value="bad">
+                    <label for="radio-bad">Bad</label>
+                    <input type="radio" id="radio-average" name="radio-group" value="average">
+                    <label for="radio-average">Average</label>
+                    <input type="radio" id="radio-good" name="radio-group" value="good">
+                    <label for="radio-good">Good</label>
+                </fieldset>
+            </div>
+            <div class="survey-element">
+                <fieldset>
+                    <legend>Which projects have you done already?<span style="font-size: 0.7em;">(Check how many you like)</span></legend>
+                    <input type="checkbox" id="project1" value="project1">
+                    <label for="project1">Tribute Page</label>
+                    <input type="checkbox" id="project2" value="project2">
+                    <label for="project2">Survey Form</label>
+                    <input type="checkbox" id="project3" value="project3">
+                    <label for="project3">Product Landing Page</label>
+                    <input type="checkbox" id="project4" value="project4">
+                    <label for="project4">Technical Documentation Page</label>
+                    <input type="checkbox" id="project5" value="project5">
+                    <label for="project5">Personal Portfolio Page</label>
+                </fieldset>
+            </div>
+            <div class="survey-element">
+                <label for="text-input">Feel free to write down your comments</label>
+                <input type="text" id="text-input" name="text-input">
+            </div>
+            <div class="survey-element">
+                <button type="submit" id="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
