@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+        <title>Technical Documentation Page</title>
+    </head>
+    <body>
+        <nav id="navbar">
+            <header id="navbar-header">
+                Git refference
+            </header>
+            <ul>
+                <li>
+                    <a href="#Introduction_to_Git" class="nav-link">Introduction to Git</a>
+                </li>
+                <li>
+                    <a href="#Gittutorial" class="nav-link">Gittutorial</a>
+                </li>
+                <li>
+                    <a href="#Git_commands" class="nav-link">Git commands</a>
+                </li>
+                <li>
+                    <a href="#Example_of_use" class="nav-link">Example of use</a>
+                </li>
+                <li>
+                    <a href="#Disclaimer" class="nav-link">Disclaimer</a>
+                </li>
+            </ul>
+        </nav>
+        <main id="main-doc">
+            <section class="main-section">
+                <header id="Introduction_to_Git">
+                    Introduction to Git
+                </header>
+                <p>Git is a fast, scalable, distributed revision control system with an unusually rich command set that provides both high-level operation and full access to internals.</p>
+                <p>To get started head to <a href="#Gittutorial" class="in-text-link">Gittutorial</a> and learn how to create and menage a basic git project.</p>
+                <p>After you mastered the basic concepts, you can move on to <a href="#Git_commands">git commands section</a> to learn what commands git offers.</p>
+            </section>
+            <section class="main-section">
+                <header id="Gittutorial">
+                    Gittutorial
+                </header>
+                <ul id=gittutorial-list>
+                    <li>
+                        <h3 class="minor-section">
+                            Description
+                        </h3>
+                        <p>This tutorial explains how to import a new project into Git, make changes to it, and share changes with other developers.</p>
+                        <p>First, note that you can get documentation for a command such as <code>git log --graph with:</code></p>
+                        <code>$ man git-log</code>
+                        <p>or:</p>
+                        <code>$ git help log</code>
+                        <p>With the latter, you can use the manual viewer of your choice.</p>
+                        <p>It is a good idea to introduce yourself to Git with your name and public email address before doing any operation. The easiest way to do so is:</p>
+                        <code>$ git config --global user.name "Your Name Comes Here"<br>$ git config --global user.email you@yourdomain.example.com</code>
+                    </li>
+                    <li>
+                        <h3 class="minor-section">
+                            Importing a new project
+                        </h3>
+                        <p>Assume you have a tarball project.tar.gz with your initial work. You can place it under Git revision control as follows.</p>
+                        <code>$ tar xzf project.tar.gz<br>
+                            $ cd project<br>
+                            $ git init</code>
+                        Git will reply:
+                        <code>Initialized empty Git repository in .git/</code>
+                        <p>You’ve now initialized the working directory—​you may notice a new directory created, named ".git".</p>
+                        <p>Next, tell Git to take a snapshot of the contents of all files under the current directory (note the .), with <code>git add</code>:</p>
+                        <code>$ git add .</code>
+                        <p>This snapshot is now stored in a temporary staging area which Git calls the "index". You can permanently store the contents of the index in the repository with <code>git commit</code>:</p>
+                        <code>$ git commit</code>
+                        <p>This will prompt you for a commit message. You’ve now stored the first version of your project in Git.</p>
+                    </li>
+                    <li>
+                        <h3 class="minor-section">
+                            Making changes
+                        </h3>
+                        <p>Modify some files, then add their updated contents to the index:</p>
+                        <code>$ git add file1 file2 file3</code>
+                        <p>You are now ready to commit. You can see what is about to be committed using <code>git diff</code> with the <code>--cached</code> option:</p>
+                        <code>$ git diff --cached</code>
+                        <p>(Without <code>--cached</code>, <code>git diff</code> will show you any changes that you’ve made but not yet added to the index.) You can also get a brief summary of the situation with <code>git status</code>:</p>
+                        <code><pre>$ git status
+On branch master
+Changes to be committed:
+Your branch is up to date with 'origin/master'.
+(use "git restore --staged <file>..." to unstage)
+
+    modified:   file1
+    modified:   file2
+    modified:   file3</pre></code>
+                        <p>If you need to make any further adjustments, do so now, and then add any newly modified content to the index. Finally, commit your changes with:</p>
+                        <code>$ git commit</code>
+                        <p>This will again prompt you for a message describing the change, and then record a new version of the project.</p>
+                        <p>Alternatively, instead of running <code>git add</code> beforehand, you can use</p>
+                        <code>$ git commit -a</code>
+                        <p>which will automatically notice any modified (but not new) files, add them to the index, and commit, all in one step.</p>
+                        <p>A note on commit messages: Though not required, it’s a good idea to begin the commit message with a single short (less than 50 character) line summarizing the change, followed by a blank line and then a more thorough description. The text up to the first blank line in a commit message is treated as the commit title, and that title is used throughout Git. For example, <code>git-format-patch</code> turns a commit into email, and it uses the title on the Subject line and the rest of the commit in the body.</p>
+                    </li>
+                    <li>
+                        <h3 class="minor-section">
+                            Git tracks content not files
+                        </h3>
+                        <p>Many revision control systems provide an <code>add</code> command that tells the system to start tracking changes to a new file. Git’s <code>add</code> command does something simpler and more powerful: <code>git add</code> is used both for new and newly modified files, and in both cases it takes a snapshot of the given files and stages that content in the index, ready for inclusion in the next commit.</p>
+                    </li>
+                    <li>
+                        <h3>Viewing project history</h3>
+                        <p>At any point you can view the history of your changes using</p>
+                        <code>$ git log</code>
+                        <p>If you also want to see complete diffs at each step, use</p>
+                        <code>$ git log -p</code>
+                        <p>Often the overview of the change is useful to get a feel of each step</p>
+                        <code>$ git log --stat --summary</code>
+                    </li>
+                    <li>
+                        <h3 class="minor-section">Managing branches</h3>
+                        <p>A single Git repository can maintain multiple branches of development. To create a new branch named "experimental", use</p>
+                        <code>$ git branch experimental</code>
+                        <p>If you now run</p>
+                        <code>$ git branch</code>
+                        <p>you’ll get a list of all existing branches:</p>
+                        <code><pre>  experimental
+* master</pre></code>
+                        <p>The "experimental" branch is the one you just created, and the "master" branch is a default branch that was created for you automatically. The asterisk marks the branch you are currently on; type</p>
+                        <code>$ git switch experimental</code>
+                        <p>to switch to the experimental branch. Now edit a file, commit the change, and switch back to the master branch:</p>
+                        <code><pre>(edit file)
+$ git commit -a
+$ git switch master</pre></code>
+                        <p>Check that the change you made is no longer visible, since it was made on the experimental branch and you’re back on the master branch.</p>
+                        <p>You can make a different change on the master branch:</p>
+                        <code><pre>(edit file)
+$ git commit -a</pre></code>
+                        <p>at this point the two branches have diverged, with different changes made in each. To merge the changes made in experimental into master, run</p>
+                        <code>$ git merge experimental</code>
+                        <p>If the changes don’t conflict, you’re done. If there are conflicts, markers will be left in the problematic files showing the conflict;</p>
+                        <code>$ git diff</code>
+                        <p>will show this. Once you’ve edited the files to resolve the conflicts,</p>
+                        <code>$ git commit -a</code>
+                        <p>will commit the result of the merge. Finally,</p>
+                        <code>$ gitk</code>
+                        <p>will show a nice graphical representation of the resulting history.</p>
+                        <p>At this point you could delete the experimental branch with</p>
+                        <code>$ git branch -d experimental</code>
+                        <p>This command ensures that the changes in the experimental branch are already in the current branch.</p>
+                        <p>If you develop on a branch crazy-idea, then regret it, you can always delete the branch with</p>
+                        <code>$ git branch -D crazy-idea</code>
+                        <p>Branches are cheap and easy, so this is a good way to try something out.</p>
+                    </li>
+                    <li>
+                        <h3 class="minor-section">Using Git for collaboration</h3>
+                        <p>Suppose that Alice has started a new project with a Git repository in /home/alice/project, and that Bob, who has a home directory on the same machine, wants to contribute.</p>
+                        <p>Bob begins with:</p>
+                        <code>bob$ git clone /home/alice/project myrepo</code>
+                        <p>This creates a new directory "myrepo" containing a clone of Alice’s repository. The clone is on an equal footing with the original project, possessing its own copy of the original project’s history.</p>
+                        <p>Bob then makes some changes and commits them:</p>
+                        <code><pre>(edit files)
+bob$ git commit -a
+(repeat as necessary)</pre></code>
+                        <p>When he’s ready, he tells Alice to pull changes from the repository at /home/bob/myrepo. She does this with:</p>
+                        <code><pre>alice$ cd /home/alice/project
+alice$ git pull /home/bob/myrepo master</pre></code>
+                        <p>This merges the changes from Bob’s "master" branch into Alice’s current branch. If Alice has made her own changes in the meantime, then she may need to manually fix any conflicts.</p>
+                        <p>The "pull" command thus performs two operations: it fetches changes from a remote branch, then merges them into the current branch.</p>
+                        <p>Note that in general, Alice would want her local changes committed before initiating this "pull". If Bob’s work conflicts with what Alice did since their histories forked, Alice will use her working tree and the index to resolve conflicts, and existing local changes will interfere with the conflict resolution process (Git will still perform the fetch but will refuse to merge --- Alice will have to get rid of her local changes in some way and pull again when this happens).</p>
+                        <p>Alice can peek at what Bob did without merging first, using the "fetch" command; this allows Alice to inspect what Bob did, using a special symbol "FETCH_HEAD", in order to determine if he has anything worth pulling, like this:</p>
+                        <code><pre>alice$ git fetch /home/bob/myrepo master
+alice$ git log -p HEAD..FETCH_HEAD</pre></code>
+                        <p>This operation is safe even if Alice has uncommitted local changes. The range notation "HEAD..FETCH_HEAD" means "show everything that is reachable from the FETCH_HEAD but exclude anything that is reachable from HEAD". Alice already knows everything that leads to her current state (HEAD), and reviews what Bob has in his state (FETCH_HEAD) that she has not seen with this command.</p>
+                        <p>If Alice wants to visualize what Bob did since their histories forked she can issue the following command:</p>
+                        <code>$ gitk HEAD..FETCH_HEAD</code>
+                        <p>This uses the same two-dot range notation we saw earlier with <code>git log</code>.</p>
+                        <p>Alice may want to view what both of them did since they forked. She can use three-dot form instead of the two-dot form:</p>
+                        <code>$ gitk HEAD...FETCH_HEAD</code>
+                        <p>This means "show everything that is reachable from either one, but exclude anything that is reachable from both of them".</p>
+                        <p>Please note that these range notation can be used with both gitk and "git log".</p>
+                        <p>After inspecting what Bob did, if there is nothing urgent, Alice may decide to continue working without pulling from Bob. If Bob’s history does have something Alice would immediately need, Alice may choose to stash her work-in-progress first, do a "pull", and then finally unstash her work-in-progress on top of the resulting history.</p>
+                        <p>When you are working in a small closely knit group, it is not unusual to interact with the same repository over and over again. By defining remote repository shorthand, you can make it easier:</p>
+                        <code>alice$ git remote add bob /home/bob/myrepo</code>
+                        <p>With this, Alice can perform the first part of the "pull" operation alone using the <code>git fetch</code> command without merging them with her own branch, using:</p>
+                        <code>alice$ git fetch bob</code>
+                        <p>Unlike the longhand form, when Alice fetches from Bob using a remote repository shorthand set up with <code>git remote</code>, what was fetched is stored in a remote-tracking branch, in this case <code>bob/master</code>. So after this:</p>
+                        <code>alice$ git log -p master..bob/master</code>
+                        <p>shows a list of all the changes that Bob made since he branched from Alice’s master branch.</p>
+                        <p>After examining those changes, Alice could merge the changes into her master branch:</p>
+                        <code>alice$ git merge bob/master</code>
+                        <p>This merge can also be done by pulling from her own remote-tracking branch, like this:</p>
+                        <code>alice$ git pull . remotes/bob/master</code>
+                        <p>Note that git pull always merges into the current branch, regardless of what else is given on the command line.</p>
+                        <p>Later, Bob can update his repo with Alice’s latest changes using</p>
+                        <code>bob$ git pull</code>
+                        <p>Note that he doesn’t need to give the path to Alice’s repository; when Bob cloned Alice’s repository, Git stored the location of her repository in the repository configuration, and that location is used for pulls:</p>
+                        <code><pre>bob$ git config --get remote.origin.url
+/home/alice/project</pre></code>
+                        <p>Git also keeps a pristine copy of Alice’s master branch under the name "origin/master":</p>
+                        <code><pre>bob$ git branch -r
+  origin/master</pre></code>
+                        <p>If Bob later decides to work from a different host, he can still perform clones and pulls using the ssh protocol:</p>
+                        <code>bob$ git clone alice.org:/home/alice/project myrepo</code>
+                    </li>
+                    <li>
+                        <h3 class="minor-section">Exploring history</h3>
+                        <p>Git history is represented as a series of interrelated commits. We have already seen that the git log command can list those commits. Note that first line of each git log entry also gives a name for the commit:</p>
+                        <code><pre>$ git log
+commit c82a22c39cbc32576f64f5c6b3f24b99ea8149c7
+Author: Junio C Hamano <junkio@cox.net>
+Date:   Tue May 16 17:18:22 2006 -0700
+
+    merge-base: Clarify the comments on post processing.</pre></code>
+                        <p>We can give this name to <code>git show</code> to see the details about this commit.</p>
+                        <code>$ git show c82a22c39cbc32576f64f5c6b3f24b99ea8149c7</code>
+                        <p>But there are other ways to refer to commits. You can use any initial part of the name that is long enough to uniquely identify the commit:</p>
+                        <code><pre>$ git show c82a22c39c	# the first few characters of the name are
+			# usually enough
+$ git show HEAD		# the tip of the current branch
+$ git show experimental	# the tip of the "experimental" branch</pre></code>
+                        <p>Every commit usually has one "parent" commit which points to the previous state of the project:</p>
+                        <code><pre>$ git show HEAD^  # to see the parent of HEAD
+$ git show HEAD^^ # to see the grandparent of HEAD
+$ git show HEAD~4 # to see the great-great grandparent of HEAD</pre></code>
+                        <p>Note that merge commits may have more than one parent:</p>
+                        <code><pre>$ git show HEAD^1 # show the first parent of HEAD (same as HEAD^)
+$ git show HEAD^2 # show the second parent of HEAD</pre></code>
+                        <p>You can also give commits names of your own; after running</p>
+                        <code>$ git tag v2.5 1b2e1d63ff</code>
+                        <p>you can refer to 1b2e1d63ff by the name "v2.5". If you intend to share this name with other people (for example, to identify a release version), you should create a "tag" object, and perhaps sign it.</p>
+                        <p>Any Git command that needs to know a commit can take any of these names. For example:</p>
+                        <code><pre>$ git diff v2.5 HEAD	 # compare the current HEAD to v2.5
+$ git branch stable v2.5 # start a new branch named "stable" based
+			 # at v2.5
+$ git reset --hard HEAD^ # reset your current branch and working
+             # directory to its state at HEAD^</pre></code>
+                        <p>Be careful with that last command: in addition to losing any changes in the working directory, it will also remove all later commits from this branch. If this branch is the only branch containing those commits, they will be lost. Also, don’t use <code>git reset</code> on a publicly-visible branch that other developers pull from, as it will force needless merges on other developers to clean up the history. If you need to undo changes that you have pushed, use <code>git revert</code> instead.</p>
+                        <p>The <code>git grep</code> command can search for strings in any version of your project, so</p>
+                        <code>$ git grep "hello" v2.5</code>
+                        <p>searches for all occurrences of "hello" in v2.5.</p>
+                        <p>If you leave out the commit name, <code>git grep</code> will search any of the files it manages in your current directory. So</p>
+                        <code>$ git grep "hello"</code>
+                        <p>is a quick way to search just the files that are tracked by Git.</p>
+                        <p>Many Git commands also take sets of commits, which can be specified in a number of ways. Here are some examples with <code>git log</code>:</p>
+                        <code><pre>$ git log v2.5..v2.6            # commits between v2.5 and v2.6
+$ git log v2.5..                # commits since v2.5
+$ git log --since="2 weeks ago" # commits from the last 2 weeks
+$ git log v2.5.. Makefile       # commits since v2.5 which modify
+                                # Makefile</pre></code>
+                        <p>You can also give <code>git log</code> a "range" of commits where the first is not necessarily an ancestor of the second; for example, if the tips of the branches "stable" and "master" diverged from a common commit some time ago, then</p>
+                        <code>$ git log stable..master</code>
+                        <p>will list commits made in the master branch but not in the stable branch, while</p>
+                        <code>$ git log master..stable</code>
+                        <p>will show the list of commits made on the stable branch but not the master branch.</p>
+                        <p>The <code>git log</code> command has a weakness: it must present commits in a list. When the history has lines of development that diverged and then merged back together, the order in which <code>git log</code> presents those commits is meaningless.</p>
+                        <p>Most projects with multiple contributors (such as the Linux kernel, or Git itself) have frequent merges, and <code>gitk</code> does a better job of visualizing their history. For example,</p>
+                        <code>$ gitk --since="2 weeks ago" drivers/</code>
+                        <p>allows you to browse any commits from the last 2 weeks of commits that modified files under the "drivers" directory. (Note: you can adjust gitk’s fonts by holding down the control key while pressing "-" or "+".)</p>
+                        <p>Finally, most commands that take filenames will optionally allow you to precede any filename by a commit, to specify a particular version of the file:</p>
+                        <code>$ git diff v2.5:Makefile HEAD:Makefile.in</code>
+                        <p>You can also use <code>git show</code> to see any such file:</p>
+                        <code>$ git show v2.5:Makefile</code>
+                    </li>
+                </ul>
+            </section>
+            <section class="main-section">
+                <header id="Git_commands">Git commands</header>
+                <ul class="Git_commands-list">
+                    <li>
+                        <h3 class="minor-section">
+                            Synopsis
+                        </h3>
+                        <code><pre>git [--version] [--help] [-C &lt;path>] [-c &lt;name>=&lt;value>]
+    [--exec-path[=&lt;path>]] [--html-path] [--man-path] [--info-path]
+    [-p|--paginate|-P|--no-pager] [--no-replace-objects] [--bare]
+    [--git-dir=&lt;path>] [--work-tree=&lt;path>] [--namespace=&lt;name>]
+    [--super-prefix=&lt;path>]
+    &ltcommand> [&lt;args>]</pre></code>
+                    </li>
+                    <li id="options-list">
+                        <h3 class="minor-section">
+                            Options
+                        </h3>
+                        <b>--version</b>
+                        <p>Prints the Git suite version that the <code>git</code> program came from</p>
+                        <b>--help</b>
+                        <p>Prints the synopsis and a list of the most commonly used commands. If the option <code>--all</code> or <code>-a</code> is given then all available commands are printed. If a Git command is named this option will bring up the manual page for that command.</p>
+                        <p>Other options are available to control how the manual page is displayed. See git-help for more information, because git <code>--help ...</code> is converted internally into <code>git help ....</code></p>
+                        <b>-C &lt;path></b>
+                        <p>Run as if git was started in &lt;path> instead of the current working directory. When multiple <code>-C</code> options are given, each subsequent non-absolute <code>-C &lt;path></code> is interpreted relative to the preceding <code>-C &lt;path></code>. If <code>&lt;path></code> is present but empty, e.g. <code>-C ""</code>, then the current working directory is left unchanged.</p>
+                        <p>This option affects options that expect path name like <code>--git-dir</code> and <code>--work-tree</code> in that their interpretations of the path names would be made relative to the working directory caused by the <code>-C</code> option. For example the following invocations are equivalent:</p>
+                        <code><pre>git --git-dir=a.git --work-tree=b -C c status
+git --git-dir=c/a.git --work-tree=c/b status
+</pre></code>
+                        <b>-c &lt;name>=&ltvalue></b>
+                        <p>Pass a configuration parameter to the command. The value given will override values from configuration files. The &lt;name> is expected in the same format as listed by <code>git config</code> (subkeys separated by dots).</p>
+                        <p>Note that omitting the <code>=</code> in <code>git -c foo.bar ...</code> is allowed and sets <code>foo.bar</code> to the boolean true value (just like <code>[foo]bar</code> would in a config file). Including the equals but with an empty value (like <code>git -c foo.bar= ...</code>) sets <code>foo.bar</code> to the empty string which <code>git config --type=bool</code> will convert to <code>false</code>.</p>
+                        <b>--exec-path[=&lt;path>]</b>
+                        <p>Path to wherever your core Git programs are installed. This can also be controlled by setting the GIT_EXEC_PATH environment variable. If no path is given, git will print the current setting and then exit.</p>
+                        <b>--html-path</b>
+                        <p>Print the path, without trailing slash, where Git’s HTML documentation is installed and exit.</p>
+                        <b>--man-path</b>
+                        <p>Print the manpath for the man pages for this version of Git and exit.</p>
+                        <b>--info-path</b>
+                        <p>Print the path where the Info files documenting this version of Git are installed and exit.</p>
+                        <b>-p</b><br>
+                        <b>--paginate</b>
+                        <p>Pipe all output into less (or if set, $PAGER) if standard output is a terminal. This overrides the <code>pager.&lt;cmd></code> configuration options (see the "Configuration Mechanism" section below).</p>
+                        <b>-P</b><br>
+                        <b>--no-pager</b>
+                        <p>Do not pipe Git output into a pager.</p>
+                        <b>--git-dir=&lt;path></b>
+                        <p>Set the path to the repository (".git" directory). This can also be controlled by setting the <code>GIT_DIR</code> environment variable. It can be an absolute path or relative path to current working directory.</p>
+                        <p>Specifying the location of the ".git" directory using this option (or <code>GIT_DIR</code> environment variable) turns off the repository discovery that tries to find a directory with ".git" subdirectory (which is how the repository and the top-level of the working tree are discovered), and tells Git that you are at the top level of the working tree. If you are not at the top-level directory of the working tree, you should tell Git where the top-level of the working tree is, with the <code>--work-tree=&lt;path></code> option (or <code>GIT_WORK_TREE</code> environment variable)</p>
+                        <p>If you just want to run git as if it was started in <code>&lt;path></code> then use <code>git -C &lt;path></code>.</p>
+                        <b>--work-tree=&lt;path></b>
+                        <p>Set the path to the working tree. It can be an absolute path or a path relative to the current working directory. This can also be controlled by setting the GIT_WORK_TREE environment variable and the core.worktree configuration variable.</p>
+                        <b>--namespace=&lt;path></b>
+                        <p>Set the Git namespace. Equivalent to setting the <code>GIT_NAMESPACE</code> environment variable.</p>
+                        <b>--super-prefix=&lt;path></b>
+                        <p>Currently for internal use only. Set a prefix which gives a path from above a repository down to its root. One use is to give submodules context about the superproject that invoked it.</p>
+                        <b>--bare</b>
+                        <p>Treat the repository as a bare repository. If <code>GIT_DIR</code> environment is not set, it is set to the current working directory.</p>
+                        <b>--no-replace-objects</b>
+                        <p>Do not use replacement refs to replace Git objects.</p>
+                        <b>--literal-pathspecs</b>
+                        <p>Treat pathspecs literally (i.e. no globbing, no pathspec magic). This is equivalent to setting the <code>GIT_LITERAL_PATHSPECS</code> environment variable to <code>1</code>.</p>
+                        <b>--glob-pathspecs</b>
+                        <p>Add "glob" magic to all pathspec. This is equivalent to setting the <code>GIT_GLOB_PATHSPECS</code> environment variable to <code>1</code>. Disabling globbing on individual pathspecs can be done using pathspec magic ":(literal)"</p>
+                        <b>--noglob-pathspecs</b>
+                        <p>Add "literal" magic to all pathspec. This is equivalent to setting the <code>GIT_NOGLOB_PATHSPECS</code> environment variable to <code>1</code>. Enabling globbing on individual pathspecs can be done using pathspec magic ":(glob)"</p>
+                        <b>--icase-pathspecs</b>
+                        <p>Add "icase" magic to all pathspec. This is equivalent to setting the <code>GIT_ICASE_PATHSPECS</code> environment variable to <code>1</code>.</p>
+                        <b>--no-optional-locks</b>
+                        <p>Do not perform optional operations that require locks. This is equivalent to setting the <code>GIT_OPTIONAL_LOCKS</code> to <code>0</code>.</p>
+                        <b>--list-cmds=group[,group…​]</b>
+                        <p>List commands by group. This is an internal/experimental option and may change or be removed in the future. Supported groups are: builtins, parseopt (builtin commands that use parse-options), main (all commands in libexec directory), others (all other commands in <code>$PATH</code> that have git- prefix), list-&lt;category> (see categories in command-list.txt), nohelpers (exclude helper commands), alias and config (retrieve command list from config variable completion.commands)</p>
+
+                    </li>
+                    <li id="commands-list">
+                        <h3 class="minor-section">
+                            Main commands
+                        </h3>
+                        <b>git-add</b>
+                        <p>Add file contents to the index</p>
+                        <b>git-am</b>
+                        <p>Apply a series of patches from the mailbox</p>
+                        <b>git-archive</b>
+                        <p>Create an archive of files from a named tree</p>
+                        <b>git-bisect</b>
+                        <p>Use binary search to find the commit that introducted a bug</p>
+                        <b>git-branch</b>
+                        <p>List, create, or delete branches</p>
+                        <b>git-bundle</b>
+                        <p>Move objects and refs by archive</p>
+                        <b>git-checkout</b>
+                        <p>Switch branches or restore working tree files</p>
+                        <b>git-cherry-pick</b>
+                        <p>Apply the changes introducted by some existing commits</p>
+                        <b>git-citool</b>
+                        <p>Graphical alternative to git-commit</p>
+                        <b>git-clean</b>
+                        <p>Remove untracked files from working tree</p>
+                        <b>git-clone</b>
+                        <p>Clone a repository into a new directory</p>
+                        <b>git-commit</b>
+                        <p>Record changes to the repository</p>
+                        <b>git-describe</b>
+                        <p>Give an object a human readable name based on an avaliable ref</p>
+                        <b>git-diff</b>
+                        <p>Show changes between commits, commit and working tree, etc.</p>
+                        <b>git-fetch</b>
+                        <p>Downlad objects and refs from another repository</p>
+                        <b>git-format-patch</b>
+                        <p>Prepare patches for e-mail submission</p>
+                        <b>git-gc</b>
+                        <p>Cleanup unnecessary files and optimize the local repository</p>
+                        <b>git-grep</b>
+                        <p>Print lines matching a pattern</p>
+                        <b>git-gui</b>
+                        <p>A portable graphical interface to Git</p>
+                        <b>git-init</b>
+                        <p>Create an empty Git repository or reinitialize an existing one</p>
+                        <b>gitk</b>
+                        <p>The Git repository browser</p>
+                        <b>git-log</b>
+                        <p>Show commit log</p>
+                        <b>git-merge</b>
+                        <p>Join two or more development histories together</p>
+                        <b>git-mv</b>
+                        <p>Move or rename a file, a directory, or a symlink</p>
+                        <b>git-notes</b>
+                        <p>Add or inspect objects notes</p>
+                        <b>git-pull</b>
+                        <p>Fetch from and integrate with another repository or local branch</p>
+                        <b>git-push</b>
+                        <p>Update remote refs along with associated objects</p>
+                        <b>git-range-diff</b>
+                        <p>Compare two commit ranges (e.g. two versions of branch)</p>
+                        <b>git-rebase</b>
+                        <p>Reapply commits on top of another base tip</p>
+                        <b>git-reset</b>
+                        <p>Reset current HEAD to the specified state</p>
+                        <b>git-restore</b>
+                        <p>Restore working tree files</p>
+                        <b>git-revert</b>
+                        <p>Revert some existing commits</p>
+                        <b>git-rm</b>
+                        <p>Remove files from the working tree and from the index</p>
+                        <b>git-shortlog</b>
+                        <p>Summarize <code>git log</code> output</p>
+                        <b>git-show</b>
+                        <p>Show various types of objects</p>
+                        <b>git-sparse-checkout</b>
+                        <p>Initialize and modify the sparse-checkout</p>
+                        <b>git-stash</b>
+                        <p>Stash the changes in dirty working directory away</p>
+                        <b>git-status</b>
+                        <p>Show the working tree status</p>
+                        <b>git-submodule</b>
+                        <p>Initialize, update or inspect submodules</p>
+                        <b>git-switch</b>
+                        <p>Switch branches</p>
+                        <b>git-tag</b>
+                        <p>Create, list, delete or verify a tag object signed with GPG</p>
+                        <b>git-worktree</b>
+                        <p>Manage multiple working trees</p>
+                    </li>
+                </ul>
+            </section>
+            <section class="main-section">
+                <header id=Example_of_use>
+                    Example of use
+                </header>
+                <ul id=Example_of_use-list>
+                    <li>
+                        <h3 class="minor-section">
+                            Clone the upstream and work on it. Feed changes to upstream.
+                        </h3>
+                        <code><pre>$ git clone git://git.kernel.org/pub/scm/.../torvalds/linux-2.6 my2.6
+$ cd my2.6
+$ git switch -c mine master <b>(1)</b>
+$ edit/compile/test; git commit -a -s <b>(2)</b>
+$ git format-patch master <b>(3)</b>
+$ git send-email --to="person &lt;email@example.com>" 00*.patch <b>(4)</b>
+$ git switch master <b>(5)</b>
+$ git pull <b>(6)</b>
+$ git log -p ORIG_HEAD.. arch/i386 include/asm-i386 <b>(7)</b>
+$ git ls-remote --heads http://git.kernel.org/.../jgarzik/libata-dev.git <b>(8)</b>
+$ git pull git://git.kernel.org/pub/.../jgarzik/libata-dev.git ALL <b>(9)</b>
+$ git reset --hard ORIG_HEAD <b>(10)</b>
+$ git gc <b>(11)</b></pre></code>
+                        <ol>
+                            <li>checkout a new branch <code>mine</code> from <code>master</code>.</li>
+                            <li>repeat as needed.</li>
+                            <li>extract patches from your branch, relative to master,</li>
+                            <li>and email them.</li>
+                            <li>return to <code>master</code>, ready to see what's new</li>
+                            <li><code>git pull</code> fetches from <code>origin</code> by default and merges into the current branch.</li>
+                            <li>immediately after pulling, look at the changes done upstream since last time we checked, only in the area we are interested in </li>
+                            <li>check the branch names in an external repository (if not known).</li>
+                            <li>fetch from a specific branch <code>ALL</code> from a specific repository and merge it.</li>
+                            <li>revert the pull.</li>
+                            <li>garbage collect leftover objects from reverted pull.</li>
+                        </ol>
+                    </li>
+                    <li>
+                        <h3 class="minor-section">
+                            Push into another repository.
+                        </h3>
+                        <code><pre>satellite$ git clone mothership:frotz frotz <b>(1)</b>
+satellite$ cd frotz
+satellite$ git config --get-regexp '^(remote|branch)\.' <b>(2)</b>
+remote.origin.url mothership:frotz
+remote.origin.fetch refs/heads/*:refs/remotes/origin/*
+branch.master.remote origin
+branch.master.merge refs/heads/master
+satellite$ git config remote.origin.push \
+	   +refs/heads/*:refs/remotes/satellite/* <b>(3)</b>
+satellite$ edit/compile/test/commit
+satellite$ git push origin <b>(4)</b>
+
+mothership$ cd frotz
+mothership$ git switch master
+mothership$ git merge satellite/master <b>(5)</b></pre></code>
+                        <ol>
+                            <li>mothership machine has a frotz repository under home directory; clone from it to start a repository on the satellite machine.</li>
+                            <li>clone sets these configuration variables by default. It arranges <code>git pull</code> to fetch and store the branches of mothership machine to local <code>remotes/origin/*</code> remote-tracking branches.</li>
+                            <li>arrange <code>git push</code> to push all local branches to their corresponding branch of the mothership machine.</li>
+                            <li>push will stash all our work away on <code>remotes/satellite/*</code> remote tracking branches on the mothership machine. You could use this as a back-up method. Likewise, you can pretend that mothership "fetched" from you (usefull when access is one sided).</li>
+                            <li>on mothership machine, merge the work done on the satellite machine into master branch.</li>
+                        </ol>
+                    </li>
+                    <li>
+                        <h3 class="minor-section">
+                            Brach off of a specific tag.
+                        </h3>
+                        <code><pre>
+                            $ git switch -c private2.6.14 v2.6.14 <b>(1)</b>
+$ edit/compile/test; git commit -a
+$ git checkout master
+$ git cherry-pick v2.6.14..private2.6.14 <b>(2)</b></pre></code>
+                        <ol>
+                            <li>create a private branch based on a well known (but somewhat behind) tag.</li>
+                            <li>forward port all changes in <code>private2.6.14</code> branch to <code>master</code> branch without a formal "merging". Or longhand <code>git format-patch -k -m -stdout v2.6.14..private2.6.14 | git am -3 -k</code></li>
+                        </ol>
+                        <p>An alternate participant submission mechanism is using the <code>git request-pull</code> or pull-request mechanism (e.g. used on GitHub (www.github.com) to notify your upstream of your contribution.</p>
+                    </li>
+                </ul>
+            </section>
+            <section class="main-section">
+                <header id="Disclaimer">
+                    Disclaimer
+                </header>
+                <p>This page was made for FreeCodeCamp project and is not mented for commercial use. All information comes from git-scm.com</p>
+            </section>
+        </main>
+    </body>
+</html>
