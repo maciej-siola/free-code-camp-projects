@@ -4,9 +4,123 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
 
         <title>Technical Documentation Page</title>
+
+        <style>
+            body {
+                margin: 0px;
+                padding: 0px;
+            }
+            #navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                border-color: black;
+                border-right-width: 2px;
+                border-right-style: solid;
+                border-bottom-style: solid;
+                border-bottom-width: 1px;
+                width: 250px;
+                height: 100%;
+            }
+            #navbar-header {
+                text-align: center;
+                border-color: black;
+                border-style: solid;
+                border-width: 1px;
+                height: 3rem;
+                text-align: center;
+                line-height: 3rem;
+                font-size: x-large;
+                font-family: 'Source Code Pro', monospace;
+            }
+            #main-doc {
+                margin-left: 260px;
+                margin-bottom: 20px;
+            }
+            #navbar ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+            #navbar li {
+                line-height: 2.5rem;
+                text-align: center;
+                border-top-color: black;
+                border-top-style: solid;
+                border-top-width: 1px;
+            }
+            #navbar li:hover {
+                background-color: lightgray;
+            }
+            .nav-link {
+                color: black;
+                font-family: 'Source Code Pro', monospace;
+                text-decoration: none;
+            }
+            .main-section header{
+                font-family: 'Source Code Pro', monospace;
+                font-size: 2.5rem;
+            }
+            .main-section {
+                border-width: 2px;
+                border-color: black;
+                border-style: solid;
+                margin: 20px;
+                margin-right: 50px;
+                padding: 10px;
+            }
+            p {
+                width: 95%;
+            }
+            code {
+                display: block;
+                background-color: black;
+                color: lightgray;
+                padding: 2px;
+                width: 95%;
+                border-color: orange;
+                border-width: 1px;
+                border-style: groove;
+                margin-bottom: 10px;
+                word-wrap: break-word;
+            }
+            pre {
+                width: 100%;
+                overflow-x: auto;
+                white-space: pre-wrap;
+                white-space: -moz-pre-wrap;
+                white-space: -pre-wrap;
+                white-space: -o-pre-wrap;
+                word-wrap: break-word;
+            }
+            p code{
+                display: inline;
+            }
+            ol li {
+                width: 95%;
+            }
+            ol li code {
+                display: inline;
+            }
+            @media only screen and (max-width: 900px){
+                #navbar {
+                    position: static;
+                    width: 99%;
+                    border-left-width: 2px;
+                    border-left-style: solid;
+                    margin: 5px 15px 5px 5px;
+                }
+                #main-doc {
+                    margin: 0;
+                }
+                .main-section {
+                    margin: 20px;
+                }
+            }
+        </style>
     </head>
     <body>
         <nav id="navbar">
@@ -66,7 +180,7 @@
                         <code>$ tar xzf project.tar.gz<br>
                             $ cd project<br>
                             $ git init</code>
-                        Git will reply:
+                        <p>Git will reply:</p>
                         <code>Initialized empty Git repository in .git/</code>
                         <p>You’ve now initialized the working directory—​you may notice a new directory created, named ".git".</p>
                         <p>Next, tell Git to take a snapshot of the contents of all files under the current directory (note the .), with <code>git add</code>:</p>
@@ -495,8 +609,7 @@ mothership$ git merge satellite/master <b>(5)</b></pre></code>
                         <h3 class="minor-section">
                             Brach off of a specific tag.
                         </h3>
-                        <code><pre>
-                            $ git switch -c private2.6.14 v2.6.14 <b>(1)</b>
+                        <code><pre>$ git switch -c private2.6.14 v2.6.14 <b>(1)</b>
 $ edit/compile/test; git commit -a
 $ git checkout master
 $ git cherry-pick v2.6.14..private2.6.14 <b>(2)</b></pre></code>
