@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Survey Page</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,200&display=swap" rel="stylesheet">
+
+    <style>
+        
+        body {
+            margin: 0;
+            background-image: linear-gradient(135deg, rgba(182, 180, 189, 0.623), rgba(241, 187, 133, 0.712)), url(https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?cs=srgb&dl=rece-ludzie-laptop-biznes-3184418.jpg&fm=jpg);
+            background-size: cover;
+            font-family: "Poppins", sans-serif;
+        }
+        #container {
+            width: 100%;
+            max-width: 500px;
+            margin: 40px auto 0px auto;
+        }
+        header {
+            text-align: center;
+        }
+        #title {
+            line-height: 1;
+            font-size: 3rem;
+        }
+        #description {
+            font-size: 1.3rem;
+        }
+        #survey-form{
+            background-color:  rgba(218, 151, 84, 0.8);
+            box-shadow: 10px 10px 8px rgba(179, 113, 47, 0.788), -10px -10px 8px rgba(179, 113, 47, 0.788), -10px 10px 8px rgba(179, 113, 47, 0.788), 10px -10px 8px rgba(179, 113, 47, 0.788);
+            padding: 20px 10px 10px 10px;
+            border-radius: 5px;
+        }
+        .survey-element {
+            display: block;
+            margin-bottom: 10px;            
+        }
+        .upper-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        .wide-input {
+            width: 100%;
+            border-radius: 5px;
+            height: 1.7rem;
+            border-width: 2px;
+            box-sizing: border-box;
+            padding-left: 10px;
+        }
+        fieldset{
+            border-radius: 8px;
+        }
+        #text-input {
+            height: 100px;
+        }
+        #submit {
+            width: 100%;
+            border-radius: 1px;
+            background-color:rgba(58, 196, 58, 0.76);
+            border: 0px;
+            height: 30px;
+            color: white;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <h1 id="title">FreeCodeCamp<br>Survey Form Project</h1>
+            <p id="description">This is a survey page project made for FreeCodeCamp</p> 
+        </header>
+        <form id="survey-form">
+            <div class="survey-element">
+                <label for="name" id="name-label" class="upper-label">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name" class="wide-input">
+            </div>
+            <div class="survey-element">
+                <label for="email" id="email-label" class="upper-label">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your Email adress" class="wide-input">
+            </div>
+            <div class="survey-element">
+                <label for="number" id="number-label" class="upper-label">Age (optional)</label>
+                <input type="number" id="number" name="number" placeholder="Enter your age" min="1" max="140" class="wide-input">
+            </div>
+            <div class="survey-element">
+                <label for="dropdown" class="upper-label">Have you completed this project on your own?</label>
+                <select id="dropdown" name="dropdown" class="wide-input">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="survey-element">
+                <fieldset>
+                    <legend class="upper-label">What is your opinion about this page?</legend>
+                    <input type="radio" id="radio-bad" name="radio-group" value="bad">
+                    <label for="radio-bad">Bad</label>
+                    <input type="radio" id="radio-average" name="radio-group" value="average">
+                    <label for="radio-average">Average</label>
+                    <input type="radio" id="radio-good" name="radio-group" value="good">
+                    <label for="radio-good">Good</label>
+                </fieldset>
+            </div>
+            <div class="survey-element">
+                <fieldset>
+                    <legend class="upper-label">Which projects have you done already?</legend>
+                    <input type="checkbox" id="project1" value="project1">
+                    <label for="project1">Tribute Page</label><br>
+                    <input type="checkbox" id="project2" value="project2">
+                    <label for="project2">Survey Form</label><br>
+                    <input type="checkbox" id="project3" value="project3">
+                    <label for="project3">Product Landing Page</label><br>
+                    <input type="checkbox" id="project4" value="project4">
+                    <label for="project4">Technical Documentation Page</label><br>
+                    <input type="checkbox" id="project5" value="project5">
+                    <label for="project5">Personal Portfolio Page</label><br>
+                </fieldset>
+            </div>
+            <div class="survey-element">
+                <label for="text-input" class="upper-label">Feel free to write down your comments</label>
+                <textarea id="text-input" name="text-input" class="wide-input" placeholder="Enter your comments here"></textarea>
+            </div>
+            <div class="survey-element">
+                <button type="submit" id="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
