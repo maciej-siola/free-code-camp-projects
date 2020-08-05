@@ -4,17 +4,159 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,200&display=swap" rel="stylesheet">
+
+        <script src="https://kit.fontawesome.com/18f2290d14.js" crossorigin="anonymous"></script>
+
         <title>Personal Portfolio</title>
         
         <style>
             body {
                 margin: 0px;
                 padding: 0px;
+                min-width: 400px;
             }
-            
+            a {
+                text-decoration: none;
+            }
+            #navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                min-width: 400px;
+                background-color: #d7d9d7;
+                height: 50px;
+                text-align: right;
+                padding-right: 20px;
+                box-sizing: border-box;
+            }
+            #navbar a{
+                line-height: 50px;
+                font-family: 'Courier New', Courier, monospace;
+                color: #d96c06;
+                font-size: 20px;
+                display: inline-block;
+                text-decoration: none;
+                font-weight: bold;
+                text-align: center;
+            }
+            #navbar a:hover {
+                background-color: #577590;
+            }
+            #welcome-section {
+                height: 100vh;
+                padding-top: 40vh;
+                background-color: #577590;
+                color: #d96c06;
+                box-sizing: border-box;
+                text-align: center;
+                
+            }
+            #welcome-section h1 {
+                font-family: 'Roboto Mono', monospace;
+                font-size: 60px;
+            }
+            #welcome-section p {
+                font-size: 25px;
+            }
+            #projects {
+                background-color: #d96c06;
+                margin-top: 0px;
+                text-align: center;
+                padding-top: 2rem;
+                padding-bottom: 4rem;
+                font-size: 2vh;
+            }
+            #projects h2 {
+                margin: 0 auto 50px auto;
+                border-bottom-style: solid;
+                border-bottom-color: black;
+                border-bottom-width: 1px;
+                max-width: calc(2vh * 20);
+            }
+            #links {
+                margin-top: -20px;
+                background-color: #4c2719;
+                color: #577590;
+                padding-top: 10vh;
+                padding-bottom: 10vh;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            #tile-grid {
+                display: grid;
+                grid-template-columns: 30% 30%;
+                justify-content: space-evenly;
+                row-gap: 5vh;
+            }
+            .project-tile p {
+                color: white;
+                font-size: 1.5rem;
+                line-height: 1.5rem;
+                text-decoration: none !important;
+                font-family: "Poppins", sans-serif;
+            }
+            .project-tile {
+                background-color: #577590;
+                vertical-align: center;
+            }
+            .project-tile img {
+                width: 100%;
+                height: 24vw;
+            }
+            #links a {
+                color: white;
+                margin-right: 10px;
+            }
+            @media only screen and (max-width: 800px){
+                #tile-grid {
+                    grid-template-columns: 60%;
+                }
+                .project-tile img {
+                    height: 48vw;
+                    min-height: calc(400px * 0.48);
+                }
+            } 
         </style>
     </head> 
     <body>
-        
+        <nav id="navbar">
+          <a href="#welcome-section" style="width: 70px">About</a>
+          <a href="#projects" style="width: 56px">Work</a>  
+          <a href="#links" style="width: 98px">Contact</a>
+        </nav>
+        <section id="welcome-section">
+            <h1>Hi I am Maciej</h1>
+            <p>A web developer</p>
+        </section>
+        <section id="projects">
+            <h2>These are some of my projects</h2>
+            <div id="tile-grid">
+            <a href="https://codepen.io/maciej-siola/pen/YzwBxBx" target="_blank" class="project-tile">
+                <img src="https://i.ibb.co/9WLcYMj/Adnotacja-2020-08-05-074237.png">
+                <p>Tribute Page</p>
+            </a>
+            <a href="https://codepen.io/maciej-siola/pen/oNbOmxx" target="_blank" class="project-tile">
+                <img src="https://i.ibb.co/1sxqQ3c/Adnotacja-2020-08-05-074238.png">
+                <p>Survey Form</p>
+            </a>
+            <a href="https://codepen.io/maciej-siola/pen/dyGEzex" target="_blank" class="project-tile">
+                <img src="https://i.ibb.co/87dBbDz/Adnotacja-2020-08-05-074239.png">
+                <p>Product Landing Page</p>
+            </a>
+            <a href="https://codepen.io/maciej-siola/pen/yLOBrMy" target="_blank" class="project-tile">
+                <img src="https://i.ibb.co/mH54s4q/Adnotacja-2020-08-05-074240.png">
+                <p>Technical Documentation Page</p>
+            </a>
+            </div>
+        </section>
+        <section id="links">
+            <h1>Check out more about me</h1>
+            <a href="https://www.facebook.com/profile.php?id=100000692246147" target="_blank" class="fab fa-facebook-square"> Facebook</a>
+            <a href="https://github.com/maciej-siola" target="_blank" class="fab fa-github-square" id="profile-link"> Github</a>
+            <a href="mailto:maciejisola@gmail.com" class="fas fa-envelope-square"> Mail me</a>
+        </section>
     </body>
 </html>
